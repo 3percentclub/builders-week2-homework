@@ -1,6 +1,6 @@
 # Builders Week 2 Homework: Fix the Date Bug
 
-**Time:** 15–20 minutes. **You need:** a browser and a GitHub account. Nothing to install.
+**Time:** 15–20 minutes. **You need:** a free GitHub account and a browser. Nothing to install and nothing to pay for.
 
 Our event bot reads a show notice and puts the event on the calendar. It has a bug: it grabs the **first** date it sees. In this notice, that's the presale RSVP lottery, so 500 ticket-holders show up to an empty Bushwick warehouse a week early.
 
@@ -8,19 +8,14 @@ Our event bot reads a show notice and puts the event on the calendar. It has a b
 
 It's the same trap as the in-class lab: code that runs without errors can still give you the wrong answer.
 
-## Steps
+## Steps (all on github.com)
 
 1. Click **Use this template** → **Create a new repository**. Make it public.
-2. In your new repo, click **Code** → **Codespaces** → **Create codespace on main**.
-3. In the terminal, run:
-   ```
-   python -m unittest -v
-   ```
-   2 of the 4 tests fail. That's expected.
-4. Open `extractor.py` and fix `extract_event_date()`. Only edit that file.
-5. Run the tests again until all 4 pass.
-6. Commit and push. In Codespaces: open **Source Control** (left sidebar), type a message, click **Commit**, then **Sync Changes**.
-7. Open the **Actions** tab in your repo and confirm the green checkmark.
+2. Wait about a minute, then open the **Actions** tab. You'll see a red X. That's expected: 2 of the 4 tests fail. Click into the run to see which ones.
+3. Open `extractor.py`, click the **pencil icon** to edit, and fix `extract_event_date()`. Click **Commit changes**.
+4. Go back to **Actions**. The tests run again automatically. If you see a red X, click into it, read the failure, and edit again.
+5. Keep going until you get a **green checkmark**.
+6. Open `decision.md`, click the pencil, and answer the Three C's questions. Commit.
 
 ## Rules for the fix
 
@@ -29,6 +24,10 @@ It's the same trap as the in-class lab: code that runs without errors can still 
 - If there's no event date, return `None`. Don't guess.
 - You can use AI to help. You should still be able to explain your fix in one sentence.
 
+## Optional: run the tests on your own computer
+
+If you have Python 3 installed, clone your repo and run `python -m unittest -v`. Codespaces also works if you prefer it, but you don't need it.
+
 ## Stuck?
 
-Post in Discord **#builders** with the error message you see.
+Post in Discord **#builders** with a screenshot of the red X in Actions.
