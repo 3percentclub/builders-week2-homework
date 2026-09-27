@@ -8,7 +8,7 @@ This week's rule: **choose the smallest thing likely to succeed, test it, and on
 |---|---|---|---|
 | **1. Required** | Fix the date bug + answer the Three C's | 15–20 min | No |
 | **2. Challenge** | Route the event bot's inbox: rules, model, or human | 20–30 min | No |
-| **3. Bonus** | Send model-tier messages to a light model, escalate to a heavy one, compare tokens | 20–30 min | Yes (DeepSeek or any OpenAI-compatible provider) |
+| **3. Bonus** | Send model-tier messages to a light model, escalate to a heavy one, compare tokens | 20–30 min | Yes, any provider |
 
 ## Setup (all on github.com)
 
@@ -48,24 +48,45 @@ Watch for traps: *"I got hurt near the doors"* mentions doors, but it isn't a qu
 
 `escalate.py` takes your router from Level 2 and sends only the **model**-tier messages to an LLM. It tries a light model first. If the light model replies `ESCALATE`, it retries with a heavy model. Then it prints the tokens each tier used. Rules and human messages cost 0 tokens.
 
-Defaults are DeepSeek (`deepseek-flash` → `deepseek-v4-pro`). It uses Python's standard library only, so there's nothing to install.
+**Bring any API key.** Nothing is tied to one company: you pick the provider and both models. It uses Python's standard library only, so there's nothing to install.
 
-**Run it in Google Colab (no terminal needed):** add your key under **Secrets** (key icon on the left) as `LLM_API_KEY`, then run:
+Set four values:
+
+| Name | What it is |
+|---|---|
+| `LLM_API_KEY` | Your key |
+| `LLM_BASE_URL` | Your provider's OpenAI-compatible URL (see below) |
+| `LIGHT_MODEL` | A cheap, fast model from that provider |
+| `HEAVY_MODEL` | A stronger model from that provider |
+
+Common base URLs. Get current model names from your provider's models page.
+
+| Provider | `LLM_BASE_URL` |
+|---|---|
+| OpenAI | `https://api.openai.com/v1` |
+| Anthropic (Claude) | `https://api.anthropic.com/v1` |
+| Google Gemini | `https://generativelanguage.googleapis.com/v1beta/openai` |
+| DeepSeek | `https://api.deepseek.com` |
+| OpenRouter (many models, one key) | `https://openrouter.ai/api/v1` |
+| Groq | `https://api.groq.com/openai/v1` |
+
+Provider not listed? Search "[provider name] OpenAI compatible endpoint." Most providers have one.
+
+**Run it in Google Colab (no terminal needed):** add all four values under **Secrets** (key icon on the left), then run:
 
 ```python
 !git clone https://github.com/YOUR-USERNAME/YOUR-REPO
 %cd YOUR-REPO
 import os
 from google.colab import userdata
-os.environ["LLM_API_KEY"] = userdata.get("LLM_API_KEY")
+for name in ["LLM_API_KEY", "LLM_BASE_URL", "LIGHT_MODEL", "HEAVY_MODEL"]:
+    os.environ[name] = userdata.get(name)
 !python escalate.py
 ```
 
-**Or on your own computer:** `export LLM_API_KEY=your-key` then `python escalate.py`.
+**Or on your own computer:** `export` the four values, then `python escalate.py`.
 
-**Other providers:** set `LLM_BASE_URL`, `LIGHT_MODEL`, and `HEAVY_MODEL` to any OpenAI-compatible endpoint and model IDs (OpenRouter, a local Ollama at `http://localhost:11434/v1`, etc.).
-
-Then try one change and see what it does to cost: edit the system prompt, change what counts as `ESCALATE`, or swap the light model. Answer the bonus questions in `decision.md`. **Never commit your API key.**
+Then change one thing and see what happens to cost: edit the system prompt, change what counts as `ESCALATE`, or swap in a different light model (or a different provider on the next run). Answer the bonus questions in `decision.md`. **Never commit your API key.**
 
 ## What to submit (Google Classroom)
 
