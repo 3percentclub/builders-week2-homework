@@ -2,9 +2,9 @@
 
 **Time:** 15–20 minutes. **You need:** a browser and a GitHub account. Nothing to install.
 
-Our event bot reads a community notice and puts the event on the calendar. It has a bug: it grabs the **first** date it sees. In this notice, that's the RSVP deadline, so everyone shows up a week early.
+Our event bot reads a show notice and puts the event on the calendar. It has a bug: it grabs the **first** date it sees. In this notice, that's the presale RSVP lottery, so 500 ticket-holders show up to an empty Bushwick warehouse a week early.
 
-> Community AI Workshop at the Brooklyn Public Library. RSVP by **October 14, 2026** to save your seat. The workshop is on **October 21, 2026** at 6:00 PM in the main hall.
+> BK UNDERGROUND SESSIONS #12: Presale RSVP lottery drops **October 14, 2026** at 6:00 PM online. Secret warehouse doors open **October 21, 2026** at 11:00 PM for the live set. Curfew strictly midnight. 21+ only.
 
 It's the same trap as the in-class lab: code that runs without errors can still give you the wrong answer.
 
@@ -25,7 +25,7 @@ It's the same trap as the in-class lab: code that runs without errors can still 
 ## Rules for the fix
 
 - The tests use **different notices** on purpose. Hard-coding `"2026-10-21"` or always taking the second date will fail.
-- Your code has to work out what each date is **for**. Hint: a date next to words like *RSVP*, *by*, *closes*, or *deadline* is not the event.
+- Your code has to work out what each date is **for**. Hint: a date next to words like *RSVP*, *presale*, *by*, *closes*, or *deadline* is not the event.
 - If there's no event date, return `None`. Don't guess.
 - You can use AI to help. You should still be able to explain your fix in one sentence.
 

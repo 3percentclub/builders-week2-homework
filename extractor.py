@@ -1,6 +1,6 @@
 """Week 2 homework: fix the date extractor.
 
-Our event bot reads community notices and puts the EVENT date on the calendar.
+Our event bot reads show notices and puts the EVENT date on the calendar.
 Right now it grabs the first date it sees, which is often the RSVP deadline.
 
 Your job: change extract_event_date() so it returns the date of the event itself.
@@ -11,10 +11,9 @@ import re
 from datetime import datetime
 
 NOTICE = (
-    "Community AI Workshop at the Brooklyn Public Library. "
-    "RSVP by October 14, 2026 to save your seat. "
-    "The workshop is on October 21, 2026 at 6:00 PM in the main hall. "
-    "Join in person or on Zoom."
+    "BK UNDERGROUND SESSIONS #12: Presale RSVP lottery drops October 14, 2026 at 6:00 PM online. "
+    "Secret warehouse doors open October 21, 2026 at 11:00 PM for the live set. "
+    "Curfew strictly midnight. 21+ only."
 )
 
 DATE_PATTERN = r"(January|February|March|April|May|June|July|August|September|October|November|December) (\d{1,2}), (\d{4})"
